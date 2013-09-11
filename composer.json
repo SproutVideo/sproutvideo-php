@@ -17,6 +17,7 @@
     "autoload": {
         "psr-0" : {
             "SproutVideo\\" : "lib/"
-        }
+        },
+        "files" : ["lib/SproutVideo/SproutVideo.php"]
     }
 }
