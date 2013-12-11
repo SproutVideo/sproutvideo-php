@@ -43,18 +43,16 @@ class Video extends Resource
 		ksort($query_params);
 		
 		$url_params = "";
-		$actual_url_params = "";
 		foreach ($query_params as $key => $value) {
 			$value = trim($value);
-			$encoded_value = urlencode($value);
+			$encoded_value = rawurlencode($value);
 			$url_params .= "&{$key}={$encoded_value}";
-			$actual_url_params .= "&{$key}={$value}";
 		}
 		$string_to_sign .= $url_params;
 
 		$signature = rawurlencode(base64_encode(hash_hmac('sha1', $string_to_sign, \SproutVideo::$api_key, true)));
 
-		return "{$protocol}://{$host}{$path}?signature={$signature}{$actual_url_params}";
+		return "{$protocol}://{$host}{$path}?signature={$signature}{$url_params}";
 	}
 }
 ?>
