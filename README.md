@@ -128,6 +128,15 @@ SproutVideo\Video::update_video('abc123', array('tags' => array()));
 ?>
 ```
 
+##Upload poster frame
+You can upload a custom poster frame for a video by calling the upload_poster_frame method. The first parameter is the id of the video for wish you'd like the poster frame to be associated and the second parameter is the path to the image file.
+```php
+<?php
+SproutVideo\Video::upload_poster_frame('abc123','/path/to/video.mp4');
+?>
+```
+
+
 ##delete_video
 Pass in the id of the video you wish to delete.
 

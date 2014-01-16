@@ -64,7 +64,7 @@ class Resource
 		return $response->json();
 	}
 
-	protected static function upload($path, $file, $body, $options)
+	protected static function upload($path, $file, $body, $options, $method='POST')
 	{
 		$client = new Client(\SproutVideo::$base_url);
 		if(is_null($options)){
@@ -76,7 +76,12 @@ class Resource
 		} else {
 			$request = $client->post($path, null, $body, array('query' => $options));
 		}
-		$request->addPostFiles(array('source_video' => $file));
+		if($method == 'POST') {
+			$request->addPostFiles(array('source_video' => $file));
+		} else {
+			$request->setPostField('_method', 'PUT');
+			$request->addPostFiles(array('custom_poster_frame' => $file));
+		}
 		$request->addHeader('SproutVideo-Api-Key', \SproutVideo::$api_key);
 		$response = $request->send();
 		return $response->json();

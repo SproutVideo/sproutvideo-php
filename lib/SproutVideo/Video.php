@@ -22,6 +22,11 @@ class Video extends Resource
 		return self::put('videos/'.$video_id, $body, $options);
 	}
 
+	public static function upload_poster_frame($video_id, $file)
+	{
+		return self::upload('videos/'.$video_id, $file, null, null, 'PUT');
+	}
+
 	public static function delete_video($video_id, $options=null)
 	{
 		return self::delete('videos/'.$video_id, $options);
