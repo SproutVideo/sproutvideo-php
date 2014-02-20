@@ -463,6 +463,14 @@ SproutVideo\Analytics::engagement_sessions('abc123', array('page' => 3));
 SproutVideo\Analytics::engagement_sessions('abc123', array('page' => 3, 'per_page' => 40));
 ?>
 ```
+
+You can also grab engagement sessions for a video for a specific email address like so:
+```php
+<?php
+SproutVideo\Analytics::engagement_sessions('abc123', array('vemail' => 'test@example.com'));
+?>
+```
+
 # Contributing to sproutvideo-php
  
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet.
