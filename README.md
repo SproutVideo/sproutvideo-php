@@ -86,6 +86,16 @@ SproutVideo\Video::create_video('/path/to/video.mp4', array('tags' => array('ec6
 ?>
 ```
 
+You can also create and appy tags on the flay when uploading by passing along tag names:
+
+```php
+<?php
+SproutVideo\Video::create_video('/path/to/video.mp4', array('tag_namess' => array('Tag One', 'Tag Two'));
+?>
+```
+
+
+
 You can also specify a webhook url. We'll send an HTTP POST with the video json when the video has finished processing or if there was an error during processing:
 
 ```php
