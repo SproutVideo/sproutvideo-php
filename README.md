@@ -90,7 +90,7 @@ You can also create and apply tags on the fly when uploading by passing along ta
 
 ```php
 <?php
-SproutVideo\Video::create_video('/path/to/video.mp4', array('tag_namess' => array('Tag One', 'Tag Two'));
+SproutVideo\Video::create_video('/path/to/video.mp4', array('tag_names' => array('Tag One', 'Tag Two'));
 ?>
 ```
 
