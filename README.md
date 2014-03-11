@@ -86,7 +86,7 @@ SproutVideo\Video::create_video('/path/to/video.mp4', array('tags' => array('ec6
 ?>
 ```
 
-You can also create and appy tags on the flay when uploading by passing along tag names:
+You can also create and apply tags on the fly when uploading by passing along tag names:
 
 ```php
 <?php
