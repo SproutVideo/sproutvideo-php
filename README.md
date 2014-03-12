@@ -33,7 +33,7 @@ Also, make sure that you have the [Guzzle](http://guzzlephp.org/index.html) libr
 The first thing you'll need to interact with the SproutVideo API is your API key.
 ```php
 <?php
-SproutVideo::api_key = 'abcd1234';
+SproutVideo::$api_key = 'abcd1234';
 ?>
 ```
 
