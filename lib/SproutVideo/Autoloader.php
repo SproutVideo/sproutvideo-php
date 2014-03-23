@@ -9,7 +9,6 @@ class SproutVideo_Autoloader
 
     public static function autoload($class)
     {
-        echo "{$class}\n";
         if (0 !== strpos($class, 'SproutVideo')) {
             return;
         }
@@ -21,7 +20,6 @@ class SproutVideo_Autoloader
         }
 
         if (is_file($file)) {
-            echo "Requiring: {$class}\n";
             require $file;
         }
     }
