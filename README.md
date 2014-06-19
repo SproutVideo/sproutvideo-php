@@ -33,7 +33,7 @@ Also, make sure that you have the [Guzzle](http://guzzlephp.org/index.html) libr
 The first thing you'll need to interact with the SproutVideo API is your API key.
 ```php
 <?php
-SproutVideo::api_key = 'abcd1234';
+SproutVideo::$api_key = 'abcd1234';
 ?>
 ```
 
@@ -85,6 +85,16 @@ You can also apply any number of tags to the new upload by passing their ids alo
 SproutVideo\Video::create_video('/path/to/video.mp4', array('tags' => array('ec61', 'abc123'));
 ?>
 ```
+
+You can also create and apply tags on the fly when uploading by passing along tag names:
+
+```php
+<?php
+SproutVideo\Video::create_video('/path/to/video.mp4', array('tag_names' => array('Tag One', 'Tag Two'));
+?>
+```
+
+
 
 You can also specify a webhook url. We'll send an HTTP POST with the video json when the video has finished processing or if there was an error during processing:
 
@@ -463,6 +473,14 @@ SproutVideo\Analytics::engagement_sessions('abc123', array('page' => 3));
 SproutVideo\Analytics::engagement_sessions('abc123', array('page' => 3, 'per_page' => 40));
 ?>
 ```
+
+You can also grab engagement sessions for a video for a specific email address like so:
+```php
+<?php
+SproutVideo\Analytics::engagement_sessions('abc123', array('vemail' => 'test@example.com'));
+?>
+```
+
 # Contributing to sproutvideo-php
  
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet.
