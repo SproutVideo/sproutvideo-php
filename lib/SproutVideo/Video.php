@@ -43,17 +43,17 @@ class Video extends Resource
 		if (is_null($expires)) {
 			$expires = time() + 300;
 		}
-		
+
 		$query_params = array_merge($query_params, array('expires'=> $expires));
 		ksort($query_params);
-		
+
 		$url_params = "";
 		foreach ($query_params as $key => $value) {
 			$value = trim($value);
 			$encoded_value = rawurlencode($value);
 			$url_params .= "&{$key}={$encoded_value}";
+			$string_to_sign .= "&{$key}={$value}";
 		}
-		$string_to_sign .= $url_params;
 
 		$signature = rawurlencode(base64_encode(hash_hmac('sha1', $string_to_sign, \SproutVideo::$api_key, true)));
 
