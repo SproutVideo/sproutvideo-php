@@ -190,23 +190,34 @@ SproutVideo\Video::signed_embed_code('abc123','def456', array(), 1368127991); #s
 SproutVideo\Video::signed_embed_code('abc123','def456', array(), null, 'https'); #Use https instead of http
 ?>
 ```
+# Upload Tokens
+The following methods are available: `create_upload_token`
+
+## create_upload_token
+```php
+<?php
+SproutVideo\UploadToken::create_upload_token();
+SproutVideo\UploadToken::create_upload_token(array('return_url' => 'http://example.com'));
+SproutVideo\UploadToken::create_upload_token(array('return_url' => 'http://example.com', 'seconds_valid' => 3600));
+?>
+```
 
 # Tags
 The following methods are available: `list_tags`, `create_tag`, `get_tag`, `update_tag`, `delete_tag`.
 
 ##list_tags
-By default the tag listing is paginated with 25 tags per page and sorted by created at date in ascending order. You can pass two parameters to control the paging: page and per_page. 
+By default the tag listing is paginated with 25 tags per page and sorted by created at date in ascending order. You can pass two parameters to control the paging: page and per_page.
 
 ```php
 <?php
 SproutVideo\Tag::list_tags();
 SproutVideo\Tag::list_tags('per_page' => 10);
-SproutVideo\Tag:;list_tags('per_page' => 10, 'page' => 2);
+SproutVideo\Tag::list_tags('per_page' => 10, 'page' => 2);
 ?>
 ```
 
 ##create_tag
-    
+
 ```php
 <?php
 SproutVideo\Tag::create_tag(array('name' => 'new tag'));
@@ -232,7 +243,7 @@ SproutVideo\Tag::delete_tag('abc123');
 # Playlists
 The following methods are available: `list_playlists`, `create_playlist`, `get_playlsit`, `update_playlist`, `delete_playlsit`.
 ##list_playlists
-By default the playlist listing is paginated with 25 playlists per page and sorted by created at date in ascending order. You can pass two parameters to control the paging: page and per_page. 
+By default the playlist listing is paginated with 25 playlists per page and sorted by created at date in ascending order. You can pass two parameters to control the paging: page and per_page.
 
 ```php
 <?php
@@ -310,7 +321,7 @@ SproutVideo\Login::list_logins(array('per_page' => 10, 'page' => 2));
 
 ## create_login
 create_login takes two required parameters, `email` and `password`, which will be used to allow a viewer to login to watch a video if the login has an associated `access_grant` for that video.
-    
+
 ```php
 <?php
 SproutVideo\Login::create_login(array(
@@ -363,7 +374,7 @@ SproutVideo\AccessGrant::list(array('per_page' => 10, 'page' => 2));
 
 ## create_access_grant
 create_access_grant takes two required parameters, `video_id` and `login_id`, which will be used to allow a viewer to login to watch a video based on the other optional parameters.
-    
+
 ```php
 <?php
 SproutVideo\AccessGrant::create_access_grant(array(
@@ -482,7 +493,7 @@ SproutVideo\Analytics::engagement_sessions('abc123', array('vemail' => 'test@exa
 ```
 
 # Contributing to sproutvideo-php
- 
+
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet.
 * Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it.
 * Fork the project.
