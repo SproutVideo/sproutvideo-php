@@ -3,7 +3,7 @@ Use this library to interact with the [SproutVideo API](http://sproutvideo.com/d
 
 #Installation
 ##Install with Composer
-If you're using [Composer](https://getcomposer.org/) to manage dependencies, you can add SproutVideo with.
+If you're using [Composer](http://guzzle.readthedocs.org/en/latest/) to manage dependencies, you can add SproutVideo with.
 
 ```json
 {
