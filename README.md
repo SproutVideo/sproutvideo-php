@@ -27,7 +27,7 @@ require_once '/path/to/sproutvideo-php/lib/SproutVideo/Autoloader.php';
 SproutVideo_Autoloader::register();
 ?>
 ```
-Also, make sure that you have the [Guzzle](http://guzzlephp.org/index.html) library installed.
+Also, make sure that you have the [Guzzle](http://guzzle.readthedocs.org/en/latest/) library installed.
 
 # Getting Started
 The first thing you'll need to interact with the SproutVideo API is your API key.
