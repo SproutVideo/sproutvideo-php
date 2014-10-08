@@ -36,9 +36,13 @@ class Analytics extends Resource
 		return self::build_url_and_get('stats/engagement', $options);
 	}
 
-	public static function engagement_sessions($video_id, $options=null)
+	public static function engagement_sessions($video_id=null, $options=null)
 	{
-		return self::get("stats/engagement/{$video_id}/sessions", $options);
+		if(!is_null($video_id)) {
+			return self::get("stats/engagement/{$video_id}/sessions", $options);
+		} else {
+			return self::get("stats/engagement/sessions", $options);
+		}
 	}
 
 
