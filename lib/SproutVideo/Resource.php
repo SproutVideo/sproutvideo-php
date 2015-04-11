@@ -8,8 +8,7 @@ class Resource
     protected static function get($path, $options=null)
     {
         $client = self::getHttpClient();
-        $response = $client->get($path, array('query' => $options));
-		var_dump($response);
+        $response = $client->get($path, array('query' => $options));        
         return $response->json();
     }
 
@@ -19,8 +18,8 @@ class Resource
         $response = $client->post(
             $path,
             array(
-            'body' => json_encode($body),
-            'query' => $options,
+                'body' => json_encode($body),
+                'query' => $options,
             )
         );
         return $response->json();
@@ -32,8 +31,8 @@ class Resource
         $response = $client->put(
             $path,
             array(
-            'body' => json_encode($body),
-            'query' => $options,
+                'body' => json_encode($body),
+                'query' => $options,
             )
         );
         return $response->json();
@@ -52,20 +51,20 @@ class Resource
         if($method == 'POST') {
             $response = $client->post(
                 $path, array(
-                'body' => array(
-                'source_video' => fopen($file, 'r'),
-                ),
-                'query' => $options
+                    'body' => array(
+                        'source_video' => fopen($file, 'r'),
+                    ),
+                    'query' => $options
                 )
             );
         } else {
             $response = $client->post(
                 $path, array(
-                'body' => array(
-                'custom_poster_frame' => fopen($file, 'r'),
-                '_method' => 'PUT',
-                ),
-                'query' => $options
+                    'body' => array(
+                        'custom_poster_frame' => fopen($file, 'r'),
+                        '_method' => 'PUT',
+                    ),
+                    'query' => $options
                 )
             );
         }
@@ -76,13 +75,13 @@ class Resource
     {
         $client = new Client(
             array(
-            'base_url' => \SproutVideo::$base_url,
-            'defaults' => array(
-            'headers' => array(
-            'SproutVideo-Api-Key' => \SproutVideo::$api_key,
-            'Content-Type', 'application/json;charset=utf-8'
-            ),
-            )
+                'base_url' => \SproutVideo::$base_url,
+                'defaults' => array(
+                    'headers' => array(
+                        'SproutVideo-Api-Key' => \SproutVideo::$api_key,
+                        'Content-Type', 'application/json;charset=utf-8'
+                    ),
+                )
             )
         );
         return $client;
