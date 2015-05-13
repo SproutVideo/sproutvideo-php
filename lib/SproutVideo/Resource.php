@@ -1,90 +1,89 @@
 <?php
 namespace SproutVideo;
 
-use Guzzle\Http\Client;
+use GuzzleHttp\Client;
 
 class Resource
 {
-	protected static function get($path, $options=null)
-	{
-		$client = new Client(\SproutVideo::$base_url);
+    protected static function get($path, $options=null)
+    {
+        $client = self::getHttpClient();
+        $response = $client->get($path, array('query' => $options));        
+        return $response->json();
+    }
 
-		if(is_null($options)){
-			$request = $client->get($path);
-		} else {
-			$request = $client->get($path, array(), array('query' => $options));	
-		}
-		
-		$request->addHeader('SproutVideo-Api-Key', \SproutVideo::$api_key);
-		$response = $request->send();
-		return $response->json();
-	}
+    protected static function post($path, $body, $options=null)
+    {
+        $client = self::getHttpClient();
+        $response = $client->post(
+            $path,
+            array(
+                'body' => json_encode($body),
+                'query' => $options,
+            )
+        );
+        return $response->json();
+    }
 
-	protected static function post($path, $body, $options=null)
-	{
-		$client = new Client(\SproutVideo::$base_url);
-		if(is_null($options)) {
-			$request = $client->post($path, null, json_encode($body));
-		} else {
-			$request = $client->post($path, null, json_encode($body), array('query' => $options));
-		}
-		$request->addHeader('Content-Type', 'application/json;charset=utf-8');
-		$request->addHeader('SproutVideo-Api-Key', \SproutVideo::$api_key);
-		$response = $request->send();
-		return $response->json();
+    protected static function put($path, $body, $options=null)
+    {
+        $client = self::getHttpClient();
+        $response = $client->put(
+            $path,
+            array(
+                'body' => json_encode($body),
+                'query' => $options,
+            )
+        );
+        return $response->json();
+    }
 
-	}
+    protected static function delete($path, $options=null)
+    {
+        $client = self::getHttpClient();
+        $response = $client->delete($path, array('query' => $options));
+        return $response->json();
+    }
 
-	protected static function put($path, $body, $options=null)
-	{
-		$client = new Client(\SproutVideo::$base_url);
-		if(is_null($options)) {
-			$request = $client->put($path, null, json_encode($body));
-		} else {
-			$request = $client->put($path, null, json_encode($body), array('query' => $options));
-		}
-		$request->addHeader('Content-Type', 'application/json;charset=utf-8');
-		$request->addHeader('SproutVideo-Api-Key', \SproutVideo::$api_key);
-		$response = $request->send();
-		return $response->json();
-	}
+    protected static function upload($path, $file, $body, $options, $method='POST')
+    {
+        $client = self::getHttpClient();
+        if($method == 'POST') {
+            $response = $client->post(
+                $path, array(
+                    'body' => array(
+                        'source_video' => fopen($file, 'r'),
+                    ),
+                    'query' => $options
+                )
+            );
+        } else {
+            $response = $client->post(
+                $path, array(
+                    'body' => array(
+                        'custom_poster_frame' => fopen($file, 'r'),
+                        '_method' => 'PUT',
+                    ),
+                    'query' => $options
+                )
+            );
+        }
+        return $response->json();
+    }
 
-	protected static function delete($path, $options=null)
-	{
-		$client = new Client(\SproutVideo::$base_url);
-
-		if(is_null($options)){
-			$request = $client->delete($path);
-		} else {
-			$request = $client->delete($path, array(), array('query' => $options));	
-		}
-		
-		$request->addHeader('SproutVideo-Api-Key', \SproutVideo::$api_key);
-		$response = $request->send();
-		return $response->json();
-	}
-
-	protected static function upload($path, $file, $body, $options, $method='POST')
-	{
-		$client = new Client(\SproutVideo::$base_url);
-		if(is_null($options)){
-			if(is_null($body)) {
-				$request = $client->post($path);
-			} else {
-				$request = $client-> post($path, null, $body);
-			}
-		} else {
-			$request = $client->post($path, null, $body, array('query' => $options));
-		}
-		if($method == 'POST') {
-			$request->addPostFiles(array('source_video' => $file));
-		} else {
-			$request->setPostField('_method', 'PUT');
-			$request->addPostFiles(array('custom_poster_frame' => $file));
-		}
-		$request->addHeader('SproutVideo-Api-Key', \SproutVideo::$api_key);
-		$response = $request->send();
-		return $response->json();
-	}
+    protected static function getHttpClient()
+    {
+        $client = new Client(
+            array(
+                'base_url' => \SproutVideo::$base_url,
+                'defaults' => array(
+                    'headers' => array(
+                        'SproutVideo-Api-Key' => \SproutVideo::$api_key,
+                        'Content-Type', 'application/json;charset=utf-8'
+                    ),
+                )
+            )
+        );
+        return $client;
+    }
 }
-?>
