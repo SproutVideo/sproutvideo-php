@@ -1,5 +1,6 @@
 {
     "name": "sproutvideo/sproutvideo",
+    "version": "1.0.1",
     "type": "library",
     "description": "A PHP client for SproutVideo (http://sproutvideo.com)",
     "keywords": ["video", "video hosting"],
