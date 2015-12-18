@@ -8,11 +8,10 @@ If you're using [Composer](https://getcomposer.org/) to manage dependencies, you
 ```json
 {
   "require": {
-    "sproutvideo/sproutvideo": "$VERSION"
+    "sproutvideo/sproutvideo": "1.0.1"
   }
 }
 ```
-(replace `$VERSION` with one of the available versions on Packagist)
 Composer will take care of the autoloading for you, so if you require the vendor/autoload.php, you're good to go.
 
 ##Install source from GitHub
@@ -27,7 +26,6 @@ require_once '/path/to/sproutvideo-php/lib/SproutVideo/Autoloader.php';
 SproutVideo_Autoloader::register();
 ?>
 ```
-Also, make sure that you have the [Guzzle](http://guzzle.readthedocs.org/en/latest/) library installed.
 
 # Getting Started
 The first thing you'll need to interact with the SproutVideo API is your API key.
