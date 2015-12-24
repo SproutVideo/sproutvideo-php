@@ -64,7 +64,7 @@ class CurlClient
 
   public function get($uri, $options = null)
   {
-    return $this->request('GET', $uri, $body, $options);
+    return $this->request('GET', $uri, null, $options);
   }
 
   public function post($uri, $body, $options = null)
