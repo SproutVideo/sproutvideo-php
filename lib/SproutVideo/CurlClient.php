@@ -40,7 +40,7 @@ class CurlClient
       CURLOPT_CUSTOMREQUEST => $method
     ));
 
-    if(!is_null(body)) {
+    if(!is_null($body)) {
       curl_setopt($this->ch, CURLOPT_POSTFIELDS, $body);
     }
 
