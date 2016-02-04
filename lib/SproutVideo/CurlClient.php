@@ -59,7 +59,7 @@ class CurlClient
       curl_close($this->ch);
     }
 
-    return json_decode($result);
+    return json_decode($result, true);
   }
 
   public function get($uri, $options = null)
