@@ -79,7 +79,7 @@ class CurlClient
 
   public function delete($uri, $options = null)
   {
-    return $this->request('DELETE', $uri, $body, $options);
+    return $this->request('DELETE', $uri, null, $options);
   }
 
   public function upload($uri, $body, $options, $method = 'POST')
