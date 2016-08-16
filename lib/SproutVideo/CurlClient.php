@@ -41,6 +41,9 @@ class CurlClient
     ));
 
     if(!is_null($body)) {
+      if ($upload == true) {
+        $body = $this->fixArray($body);
+      }
       curl_setopt($this->ch, CURLOPT_POSTFIELDS, $body);
     }
 
@@ -79,12 +82,27 @@ class CurlClient
 
   public function delete($uri, $options = null)
   {
-    return $this->request('DELETE', $uri, $body, $options);
+    return $this->request('DELETE', $uri, null, $options);
   }
 
   public function upload($uri, $body, $options, $method = 'POST')
   {
     return $this->request($method, $uri, $body, $options, true);
+  }
+
+  private function fixArray($data, $key = null)
+  {
+    $newArray = array();
+    foreach ($data as $k => $value) {
+      if (is_array($value)) {
+        print_r($value);
+        $newArray = array_merge($newArray, $this->fixArray($value, $k));
+      } else {
+        $newKey = is_null($key) ? $k : $key . '[' . $k . ']';
+        $newArray[$newKey] = $value;
+      }
+    }
+    return $newArray;
   }
 }
 
