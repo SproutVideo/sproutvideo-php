@@ -1,20 +1,20 @@
-#SproutVideo
+# SproutVideo
 Use this library to interact with the [SproutVideo API](http://sproutvideo.com/docs/api.html)
 
-#Installation
-##Install with Composer
+# Installation
+## Install with Composer
 If you're using [Composer](https://getcomposer.org/) to manage dependencies, you can add SproutVideo with.
 
 ```json
 {
   "require": {
-    "sproutvideo/sproutvideo": "1.0.5"
+    "sproutvideo/sproutvideo": "1.1.0"
   }
 }
 ```
 Composer will take care of the autoloading for you, so if you require the vendor/autoload.php, you're good to go.
 
-##Install source from GitHub
+## Install source from GitHub
 To install the source code:
 
     $ git clone git://github.com/sproutvideo/sproutvideo-php.git
@@ -36,9 +36,9 @@ SproutVideo::$api_key = 'abcd1234';
 ```
 
 # Videos
-The following methods are available: `list_videos`, `get_video`, `create_video`, `update_video`, `delete_video`.
+The following methods are available: `list_videos`, `get_video`, `create_video`, `update_video`, `replace_video`, `delete_video`.
 
-##list_videos
+## list_videos
 By default the videos listing is paginated with 25 videos per page and sorted by upload date in ascending order. You can pass two parameters to control the paging: page and per_page. You can also pass in the id of a tag to just return the videos tagged with that tag.
 
 ```php
@@ -50,7 +50,7 @@ SproutVideo\Video::list_videos(array('tag_id' => 'abc')));
 ?>
 ```
 
-##get_video
+## get_video
 The string passed to get_video is the ID of a SproutVideo video.
 
 ```php
@@ -59,7 +59,7 @@ SproutVideo\Video::get_video('abc123');
 ?>
 ```
 
-##create_video
+## create_video
 The most basic upload you can perform is to just pass the path to the video file to the method. The title of the video will default to the name of the file.
 
 ```php
@@ -102,7 +102,7 @@ SproutVideo\Video::create_video('/path/to/video.mp4', array('notification_url' =
 ?>
 ```
 
-##update_video
+## update_video
  The first parameter is the id of the video you wish to edit. The second parameter is a array of attributes to update on the video.
 
 ```php
@@ -110,6 +110,16 @@ SproutVideo\Video::create_video('/path/to/video.mp4', array('notification_url' =
 SproutVideo\Video::update_video('abc123', array('title' => 'Updated Title'));
 ?>
 ```
+
+## replace_video
+The first parameter is the id of the video you wish to replace. The second parameter is the local path to the video file.
+
+```php
+<?php
+SproutVideo\Video::replace_video('abc123', '/path/to/video.mp4');
+?>
+```
+
 
 ## Tags
 To add a tag to a video, make sure to include all of the tags currently associated with the video. For instance if the video already has tags with the ids "abc" and "123" and you want to add a tag with the id "def" do pass "abc", "123" and "def" to the update method.
@@ -136,7 +146,7 @@ SproutVideo\Video::update_video('abc123', array('tags' => array()));
 ?>
 ```
 
-##Upload poster frame
+## Upload poster frame
 You can upload a custom poster frame for a video by calling the upload_poster_frame method. The first parameter is the id of the video for wish you'd like the poster frame to be associated and the second parameter is the path to the image file.
 ```php
 <?php
@@ -145,7 +155,7 @@ SproutVideo\Video::upload_poster_frame('abc123','/path/to/video.mp4');
 ```
 
 
-##delete_video
+## delete_video
 Pass in the id of the video you wish to delete.
 
 ```php
@@ -154,7 +164,7 @@ SproutVideo\Video::delete_video('abc123');
 ?>
 ```
 
-##Signed Embed Codes
+## Signed Embed Codes
 You can use this convenience method to sign an embed code. It will return the embed code URL which can be used to build an iframe embed code.
 
 ```php
@@ -163,7 +173,7 @@ SproutVideo\Video::signed_embed_code($video_id, $security_token, $query_paramete
 ?>
 ```
 
-###Parameters
+### Parameters
 video_id - *String* ( *Required* )
 : The id of the video for which you're generating the signed embed code
 
@@ -179,7 +189,7 @@ expiration_time - *Integer* ( *Optional* )
 protocol - *String* ( *Optional* )
 : `http` or `https`. Defaults to `http`
 
-###Examples
+### Examples
 ```php
 <?php
 SproutVideo\Video::signed_embed_code('abc123','def456'); #sign a base embed code with no other options
@@ -203,7 +213,7 @@ SproutVideo\UploadToken::create_upload_token(array('return_url' => 'http://examp
 # Tags
 The following methods are available: `list_tags`, `create_tag`, `get_tag`, `update_tag`, `delete_tag`.
 
-##list_tags
+## list_tags
 By default the tag listing is paginated with 25 tags per page and sorted by created at date in ascending order. You can pass two parameters to control the paging: page and per_page.
 
 ```php
@@ -214,7 +224,7 @@ SproutVideo\Tag::list_tags('per_page' => 10, 'page' => 2);
 ?>
 ```
 
-##create_tag
+## create_tag
 
 ```php
 <?php
@@ -222,14 +232,14 @@ SproutVideo\Tag::create_tag(array('name' => 'new tag'));
 ?>
 ```
 
-##update_tag
+## update_tag
 ```php
 <?php
 SproutVideo\Tag::update_tag('abc123', array('name' => 'updated tag name'));
 ?>
 ```
 
-##delete_tag
+## delete_tag
 Pass in the id of the tag you wish to delete.
 
 ```php
@@ -251,7 +261,7 @@ SproutVideo\Playlist::list_playlists(array('per_page' => 10, 'page' => 2));
 ?>
 ```
 
-##create_playlist
+## create_playlist
 You can add videos to a playlist when creating it by passing in the videos you'd like to add in the videos parameter in the order you'd like them to appear.
 
 ```php
@@ -262,7 +272,7 @@ SproutVideo\Playlist::create_playlist(array(
   'videos' => array('abc123','def456','ghi789'));
 ?>
 ```
-##update_playlist
+## update_playlist
 
 ```php
 <?php
@@ -294,7 +304,7 @@ SproutVideo\Playlist::update_playlist('abc123', array('videos' => array()));
 ?>
 ```
 
-##delete_playlist
+##d elete_playlist
 Pass in the id of the playlist you wish to delete.
 
 ```php
@@ -410,7 +420,7 @@ Pass in the id of the access grant you wish to delete.
 SproutVideo\AccessGrant::delete_access_grant('asdf1234')
 ?>
 ```
-#Analytics
+# Analytics
 The following methods are available through the API client for analytics:
 
 * play_counts
@@ -459,7 +469,7 @@ SproutVideo\Analytics::geo(array('video_id' => 'abc123', 'country' => 'US'));
 ?>
 ```
 
-#Engagement
+# Engagement
 You can grab the total number of seconds of your videos that have been watched like this:
 ```php
 <?php
@@ -490,6 +500,24 @@ SproutVideo\Analytics::engagement_sessions('abc123', array('vemail' => 'test@exa
 ?>
 ```
 
+# Account
+The following methods are available: `get_account`, `update_account`.
+
+## get_account
+
+```php
+<?php
+SproutVideo\Account::get_account();
+?>
+```
+
+## update_account
+
+```php
+<?php
+SproutVideo\Account::update_account(array('download_hd' => true));
+?>
+```
 # Contributing to sproutvideo-php
 
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet.
