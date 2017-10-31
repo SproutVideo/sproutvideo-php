@@ -122,7 +122,7 @@ SproutVideo\Video::replace_video('abc123', '/path/to/video.mp4');
 
 
 ## Tags
-To add a tag to a video, make sure to include all of the tags currently associated with the video. For instance if the video already has tags with the ids "abc" and "123" and you want to add a tag with the id "def" do pass "abc", "123" and "def" to the update method.
+To add a tag to a video, make sure to include all of the tags currently associated with the video. For instance, if the video already has tags with the ids "abc" and "123", and you want to add a tag with the id "def", pass "abc", "123" and "def" to the update method.
 
 ```php
 <?php
