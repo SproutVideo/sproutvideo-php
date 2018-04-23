@@ -277,6 +277,13 @@ SproutVideo\Folder.create_folder(array(
 ?>
 ```
 
+## get_folder
+```php
+<?php
+SproutVideo\Folder.get_folder('d3f456')
+?>
+```
+
 ## update_folder
 ```php
 <?php
