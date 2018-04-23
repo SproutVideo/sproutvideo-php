@@ -248,10 +248,59 @@ SproutVideo\Tag::delete_tag('abc123');
 ?>
 ```
 
+# Folders
+The following methods are avaialble: `list_folders`, `create_folder`, `get_folder`, `update_folder`, `delete_folder`
+## list_folders
+By default, the folder listing is paginated with 25 folders per page and sorted by `created_at` date in ascending order. You can pass tow parameters to control the paging: `page` and `per_page`. If you do not pass in a `parent_id` only the folders within the root folder will be returned. To get the folders in a specific folder, make sure to pass in that folder's id using the `parent_id` parameter.
+
+```php
+<?php
+SproutVideo\Folder::list_folders();
+SproutVideo\Folder::list_folders(array('order_by' => 'name', 'order_dir' => 'desc'));
+SproutVideo\Folder::list_folders(array('parent_id' => 'def456'));
+?>
+```
+
+## create_folder
+Creating a folder without a `parent_id` will place that folder in the root folder. Passing in a `parent_id` will place the newly created folder in the folder specified by `parent_id`.
+
+```php
+<?php
+ // folder is created in the root folder.
+SproutVideo\Folder.create_folder(array('name' => 'New Folder'));
+
+// folder is created as a child of the folder specified by the id 'def456'
+SproutVideo\Folder.create_folder(array(
+  'name' => 'New Folder',
+  'parent_id' => 'def456'
+));
+?>
+```
+
+## update_folder
+```php
+<?php
+SproutVideo\Folder.update_folder('def456', array('name' => 'Renamed Folder'))
+?>
+```
+
+## delete_folder
+By default, when deleting a folder, all of the contents of that folder (videos and folders), will be moved the root folder to prevent unintended data loss. If you wish to actually delete all of the content of a folder, make sure to pass in `delete_all` as true.
+
+```php
+<?php
+// delete the folder and move it's contents to the root folder
+SproutVideo\Folder.delete_folder('def456');
+
+// delete the folder and everything in it.
+SproutVideo\Folder.delete_folder('def456', array('delete_all' => true));
+?>
+```
 # Playlists
-The following methods are available: `list_playlists`, `create_playlist`, `get_playlsit`, `update_playlist`, `delete_playlsit`.
-##list_playlists
-By default the playlist listing is paginated with 25 playlists per page and sorted by created at date in ascending order. You can pass two parameters to control the paging: page and per_page.
+The following methods are available: `list_playlists`, `create_playlist`, `get_playlsit`, `update_playlist`, `delete_playlist`.
+
+## list_playlists
+By default, the playlist listing is paginated with 25 playlists per page and sorted by created at date in ascending order. You can pass two parameters to control the paging: page and per_page.
 
 ```php
 <?php
@@ -304,7 +353,7 @@ SproutVideo\Playlist::update_playlist('abc123', array('videos' => array()));
 ?>
 ```
 
-##d elete_playlist
+## delete_playlist
 Pass in the id of the playlist you wish to delete.
 
 ```php
@@ -528,4 +577,4 @@ SproutVideo\Account::update_account(array('download_hd' => true));
 
 # Copyright
 
-Copyright (c) 2013 SproutVideo. See LICENSE.txt for further details.
+Copyright (c) 2018 SproutVideo. See LICENSE.txt for further details.
