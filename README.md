@@ -8,7 +8,7 @@ If you're using [Composer](https://getcomposer.org/) to manage dependencies, you
 ```json
 {
   "require": {
-    "sproutvideo/sproutvideo": "1.3.0"
+    "sproutvideo/sproutvideo": "1.3.1"
   }
 }
 ```
@@ -446,7 +446,7 @@ SproutVideo\AccessGrant::create_access_grant(array(
   'login_id' => 'abc123'));
 ?>
 ```
-## bulk_create_access_grant
+## bulk_create_access_grants
 bulk_create_access_grants takes an array of access grant objects and creates them in a single API call to efficiently create access grants in bulk, and reduce the number of API calls needed.
 ```php
 <?php
