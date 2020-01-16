@@ -446,7 +446,24 @@ SproutVideo\AccessGrant::create_access_grant(array(
   'login_id' => 'abc123'));
 ?>
 ```
-
+## bulk_create_access_grant
+bulk_create_access_grants takes an array of access grant objects and creates them in a single API call to efficiently create access grants in bulk, and reduce the number of API calls needed.
+```php
+<?php
+SproutVideo\AccessGrant::bulk_create_access_grants(
+  array(
+    array(
+      'video_id' => 'abc123',
+      'login_id' => 'abc123'
+    ),
+    array(
+      'video_id' => 'def456',
+      'login_id' => 'def456'
+    )
+  )
+);
+?>
+```
 ## get_access_grant
 The string passed to get_access_grant is the ID of a SproutVideo login.
 

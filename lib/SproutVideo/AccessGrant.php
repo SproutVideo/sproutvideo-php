@@ -26,5 +26,10 @@ class AccessGrant extends Resource
 	{
 		return self::delete('access_grants/'.$access_grant_id, $options);
 	}
+
+	public static function bulk_create_access_grant($data, $options=null)
+	{
+		return self::post('access_grants/bulk', $data, $options);
+	}
 }
 ?>
