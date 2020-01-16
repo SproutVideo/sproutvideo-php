@@ -601,4 +601,4 @@ SproutVideo\Account::update_account(array('download_hd' => true));
 
 # Copyright
 
-Copyright (c) 2018 SproutVideo. See LICENSE.txt for further details.
+Copyright (c) 2020 SproutVideo. See LICENSE.txt for further details.
