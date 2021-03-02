@@ -2,10 +2,10 @@
     "name": "sproutvideo/sproutvideo",
     "version": "1.3.2",
     "type": "library",
-    "description": "A PHP client for SproutVideo (http://sproutvideo.com)",
+    "description": "A PHP client for SproutVideo (https://sproutvideo.com)",
     "keywords": ["video", "video hosting"],
-    "homepage": "http://sproutvideo.com",
-    "license": "BSD",
+    "homepage": "https://sproutvideo.com",
+    "license": "BSD-4-Clause",
     "authors": [
         {
             "name": "Adam Podolnick",
