@@ -14,7 +14,11 @@ class Video extends Resource
 
 	public static function create_video($file, $body=null, $options=null)
 	{
-		return self::upload('videos', $file, $body, $options);
+		if ($file == null) {
+			return self::post('videos', $body, $options);
+		} else {
+			return self::upload('videos', $file, $body, $options);
+		}
 	}
 
 	public static function update_video($video_id, $body=null, $options=null)

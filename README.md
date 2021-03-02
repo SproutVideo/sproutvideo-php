@@ -1,5 +1,5 @@
 # SproutVideo
-Use this library to interact with the [SproutVideo API](http://sproutvideo.com/docs/api.html)
+Use this library to interact with the [SproutVideo API](https://sproutvideo.com/docs/api.html)
 
 # Installation
 ## Install with Composer
@@ -92,16 +92,21 @@ SproutVideo\Video::create_video('/path/to/video.mp4', array('tag_names' => array
 ?>
 ```
 
-
-
 You can also specify a webhook url. We'll send an HTTP POST with the video json when the video has finished processing or if there was an error during processing:
 
 ```php
 <?php
-SproutVideo\Video::create_video('/path/to/video.mp4', array('notification_url' => 'http://example.com/webhook_url'));
+SproutVideo\Video::create_video('/path/to/video.mp4', array('notification_url' => 'https://example.com/webhook_url'));
 ?>
 ```
 
+Lastly, if you are using the `source_video_url` parameter instead of uploading a file directly, use the following syntax:
+
+```php
+<?php
+SproutVideo\Video::create_video(null, array('source_video_url' => 'https://example.com/video-file.mp4'));
+?>
+```
 ## update_video
  The first parameter is the id of the video you wish to edit. The second parameter is a array of attributes to update on the video.
 
@@ -205,8 +210,8 @@ The following methods are available: `create_upload_token`
 ```php
 <?php
 SproutVideo\UploadToken::create_upload_token();
-SproutVideo\UploadToken::create_upload_token(array('return_url' => 'http://example.com'));
-SproutVideo\UploadToken::create_upload_token(array('return_url' => 'http://example.com', 'seconds_valid' => 3600));
+SproutVideo\UploadToken::create_upload_token(array('return_url' => 'https://example.com'));
+SproutVideo\UploadToken::create_upload_token(array('return_url' => 'https://example.com', 'seconds_valid' => 3600));
 ?>
 ```
 
