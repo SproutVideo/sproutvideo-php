@@ -596,6 +596,54 @@ SproutVideo\Account::get_account();
 SproutVideo\Account::update_account(array('download_hd' => true));
 ?>
 ```
+
+# Subtitles
+The following methods are available: `list_subtitles`, `create_subtitle`, `get_subtitle`, `update_subtitle`, `delete_subtitle`.
+
+## list_subtitles
+By default, the subtitle listing is paginated with 25 subtitles per page and sorted by created at date in ascending order. You can pass two parameters to control the paging: page and per_page. You must pass a video_id in the options array.
+
+```php
+<?php
+SproutVideo\Subtitle::list_subtitles(array('video_id' => 'abd124'));
+SproutVideo\Subtitle::list_subtitles(array('video_id' => 'abd124', 'per_page' => 10));
+SproutVideo\Subtitle::list_subtitles(array('video_id' => 'abd124', 'per_page' => 10, 'page' => 2));
+?>
+```
+
+## create_subtitle
+To create a subtitle, you must pass the following `data`: language and content. You must also pass the `video_id` option for the video you want to add the subtitle to.
+
+```php
+<?php
+$data = array('language' => 'en', 'content' => 'WEBVTT FILE...');
+$options = array('movie_id' => 'abc123');
+
+SproutVideo\Subtitle::create_subtitle($data, $options);
+?>
+```
+
+## update_subtitle
+
+```php
+<?php
+$data = array('language' => 'fr');
+$options = array('movie_id' => 'abc123', 'id' => 'cde345');
+
+SproutVideo\Subtitle::update_subtitle($data, $options);
+?>
+```
+
+## delete_subtitle
+Pass in the id of the subtitle you wish to delete and it's associated video_id.
+
+```php
+<?php
+$options = array('movie_id' => 'abc123', 'id' => 'cde345');
+SproutVideo\Subtitle::delete_subtitle($options);
+?>
+```
+
 # Contributing to sproutvideo-php
 
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet.
