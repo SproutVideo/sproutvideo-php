@@ -46,7 +46,7 @@ By default the videos listing is paginated with 25 videos per page and sorted by
 SproutVideo\Video::list_videos();
 SproutVideo\Video::list_videos(array('per_page' => 10));
 SproutVideo\Video::list_videos(array('per_page' => 10, 'page' => 2));
-SproutVideo\Video::list_videos(array('tag_id' => 'abc')));
+SproutVideo\Video::list_videos(array('tag_id' => 'abc'));
 ?>
 ```
 
