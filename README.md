@@ -46,7 +46,7 @@ By default the videos listing is paginated with 25 videos per page and sorted by
 SproutVideo\Video::list_videos();
 SproutVideo\Video::list_videos(array('per_page' => 10));
 SproutVideo\Video::list_videos(array('per_page' => 10, 'page' => 2));
-SproutVideo\Video::list_videos(array('tag_id' => 'abc')));
+SproutVideo\Video::list_videos(array('tag_id' => 'abc'));
 ?>
 ```
 
@@ -596,6 +596,101 @@ SproutVideo\Account::get_account();
 SproutVideo\Account::update_account(array('download_hd' => true));
 ?>
 ```
+
+# Subtitles
+The following methods are available: `list_subtitles`, `create_subtitle`, `get_subtitle`, `update_subtitle`, `delete_subtitle`.
+
+## list_subtitles
+By default, the subtitle listing is paginated with 25 subtitles per page and sorted by created at date in ascending order. You can pass two parameters to control the paging: page and per_page. You must pass a video_id in the options array.
+
+```php
+<?php
+SproutVideo\Subtitle::list_subtitles(array('video_id' => 'abd124'));
+SproutVideo\Subtitle::list_subtitles(array('video_id' => 'abd124', 'per_page' => 10));
+SproutVideo\Subtitle::list_subtitles(array('video_id' => 'abd124', 'per_page' => 10, 'page' => 2));
+?>
+```
+
+## create_subtitle
+To create a subtitle, you must pass the following `data`: language and content. You must also pass the `video_id` option for the video you want to add the subtitle to.
+
+```php
+<?php
+$data = array('language' => 'en', 'content' => 'WEBVTT FILE...');
+$options = array('movie_id' => 'abc123');
+
+SproutVideo\Subtitle::create_subtitle($data, $options);
+?>
+```
+
+## update_subtitle
+
+```php
+<?php
+$data = array('language' => 'fr');
+$options = array('movie_id' => 'abc123', 'id' => 'cde345');
+
+SproutVideo\Subtitle::update_subtitle($data, $options);
+?>
+```
+
+## delete_subtitle
+Pass in the id of the subtitle you wish to delete and it's associated video_id.
+
+```php
+<?php
+$options = array('movie_id' => 'abc123', 'id' => 'cde345');
+SproutVideo\Subtitle::delete_subtitle($options);
+?>
+```
+
+# Calls to Action
+The following methods are available: `list_ctas`, `create_cta`, `get_cta`, `update_cta`, `delete_cta`.
+
+## list_ctas
+By default, the cta listing is paginated with 25 ctas per page and sorted by created at date in ascending order. You can pass two parameters to control the paging: page and per_page. You must pass a video_id in the options array.
+
+```php
+<?php
+SproutVideo\CallToAction::list_ctas(array('video_id' => 'abd124'));
+SproutVideo\CallToAction::list_ctas(array('video_id' => 'abd124', 'per_page' => 10));
+SproutVideo\CallToAction::list_ctas(array('video_id' => 'abd124', 'per_page' => 10, 'page' => 2));
+?>
+```
+
+## create_cta
+To create a cta, you must pass the following `data`: text, url, start_time, and end_time. You must also pass the `video_id` option for the video you want to add the cta to.
+
+```php
+<?php
+$data = array('text' => 'get it done', 'url' => 'https://sproutvideo.com', 'start_time' => 1, 'end_time' => 2);
+$options = array('movie_id' => 'abc123');
+
+SproutVideo\CallToAction::create_cta($data, $options);
+?>
+```
+
+## update_cta
+
+```php
+<?php
+$data = array('text' => 'do something else');
+$options = array('movie_id' => 'abc123', 'id' => 'cde345');
+
+SproutVideo\CallToAction::update_cta($data, $options);
+?>
+```
+
+## delete_cta
+Pass in the id of the cta you wish to delete and it's associated video_id.
+
+```php
+<?php
+$options = array('movie_id' => 'abc123', 'id' => 'cde345');
+SproutVideo\CallToAction::delete_cta($options);
+?>
+```
+
 # Contributing to sproutvideo-php
 
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet.
@@ -606,4 +701,4 @@ SproutVideo\Account::update_account(array('download_hd' => true));
 
 # Copyright
 
-Copyright (c) 2020 SproutVideo. See LICENSE.txt for further details.
+Copyright (c) 2021 SproutVideo. See LICENSE.txt for further details.
