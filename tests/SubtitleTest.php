@@ -6,12 +6,20 @@ final class SubtitleTest extends MockeryTestCase
     public function testItCanRequestAllSubtitles()
     {
 
-        $spy = Mockery::mock('alias:SproutVideo\Resource')->shouldAllowMockingProtectedMethods();
-        $sut = new SproutVideo\Subtitle($spy);
-        $spy->shouldReceive('get')->once()->with('videos/1234/subtitles', ['video_id' => '1234']);  
+        $client = Mockery::mock('SproutVideo\CurlClient')->shouldAllowMockingProtectedMethods();
+        $resource = Mockery::mock('alias:SproutVideo\Resource');
+        $sub = new SproutVideo\Subtitle($resource);
 
-        $sut->list_subtitles(array('video_id' => '1234'));
+        $resource->shouldReceive("newClient")->andReturn($client);
 
+        $resource->shouldReceive('get')->once()->with('videos/1234/subtitles', ['video_id' => '1234']);  
+        $client->shouldReceive('get')->once()->with('videos/1234/subtitles', ['video_id' => '1234']);  
+
+        $sub->list_subtitles(array('video_id' => '1234'));
+
+
+        // pass the App\Point mock into App\Rectangle as an alternative
+        // to using new App\Point() in-place.
         // $spy->shouldHaveReceived()->get()->with('/subtitles', 'tok_valid-token');  
         // Mockery::close();
 

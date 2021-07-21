@@ -28,7 +28,7 @@ class CurlClient
     curl_setopt($this->ch, CURLOPT_HTTPHEADER, $headers);
   }
 
-  private function request($method, $uri, $body, $options = null, $upload = false)
+  protected function request($method, $uri, $body, $options = null, $upload = false)
   {
     $url = \SproutVideo::$base_url . '/' . $uri;
     if(!is_null($options)) {
