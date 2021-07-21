@@ -5,6 +5,8 @@ class Resource
 {
 	protected static function get($path, $options=null)
 	{
+        $test = 'hdfaf resource';
+        var_dump($test);
 		$client = new CurlClient();
 		$response = $client->get($path, $options);
 		return $response;

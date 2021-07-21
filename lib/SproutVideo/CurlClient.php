@@ -67,6 +67,8 @@ class CurlClient
 
   public function get($uri, $options = null)
   {
+        $test = 'hdfaf client';
+        var_dump($test);
     return $this->request('GET', $uri, null, $options);
   }
 
