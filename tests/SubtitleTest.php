@@ -3,46 +3,52 @@ use \Mockery\Adapter\Phpunit\MockeryTestCase;
 
 final class SubtitleTest extends MockeryTestCase
 {
-    public function testItCanRequestAllSubtitles()
+    private static $resource;
+
+    public function setup(): void
     {
+        self::$resource = Mockery::spy('alias:SproutVideo\Resource');
+    }
 
-        $client = Mockery::mock('SproutVideo\CurlClient')->shouldAllowMockingProtectedMethods();
-        $resource = Mockery::mock('alias:SproutVideo\Resource');
-        $sub = new SproutVideo\Subtitle($resource);
+    public function testItGetAll()
+    {
+        $options = ['video_id' => '1234'];
+        SproutVideo\Subtitle::list_subtitles($options);
 
-        $resource->shouldReceive("newClient")->andReturn($client);
+        self::$resource->shouldHaveReceived('get')->once()->with('videos/1234/subtitles', $options);  
+    }
 
-        $resource->shouldReceive('get')->once()->with('videos/1234/subtitles', ['video_id' => '1234']);  
-        $client->shouldReceive('get')->once()->with('videos/1234/subtitles', ['video_id' => '1234']);  
+    public function testItCanGetDetails()
+    {
+        $options = ['video_id' => '1234', 'id' => '123'];
+        SproutVideo\Subtitle::get_subtitle($options);
 
-        $sub->list_subtitles(array('video_id' => '1234'));
+        self::$resource->shouldHaveReceived('get')->once()->with('videos/1234/subtitles/'.$options['id'], $options);  
+    }
 
+    public function testItCanCreate()
+    {
+        $data = ['language' => 'en', 'content' => 'WEBVTT FILE...'];
+        $options = ['video_id' => '1234'];
+        SproutVideo\Subtitle::create_subtitle($data, $options);
 
-        // pass the App\Point mock into App\Rectangle as an alternative
-        // to using new App\Point() in-place.
-        // $spy->shouldHaveReceived()->get()->with('/subtitles', 'tok_valid-token');  
-        // Mockery::close();
+        self::$resource->shouldHaveReceived('post')->once()->with('videos/1234/subtitles', $data, $options);  
+    }
 
-        // // Create a mock for the Observer class,
-        // // only mock the update() method.
-        // $observer = $this->createMock(SproutVideo\CurlClient::class);
+    public function testItCanUpdate()
+    {
+        $data = ['content' => 'WEBVTT FILE.. things.'];
+        $options = ['video_id' => '1234', 'id' => '1321'];
+        SproutVideo\Subtitle::update_subtitle($data, $options);
 
-        // // Set up the expectation for the update() method
-        // // to be called only once and with the string 'something'
-        // // as its parameter.
-        // $observer->expects($this->once())
-        //          ->method('get');
-        //         //  ->with($this->equalTo('something'));
+        self::$resource->shouldHaveReceived('put')->once()->with('videos/1234/subtitles/'.$options['id'], $data, $options);  
+    }
 
-        // // Create a Subject object and attach the mocked
-        // // Observer object to it.
-        // $subject = new SproutVideo\Subtitle;
-        // $subject->observers[] = $observer;
-        // // $subject->attach($observer);
+    public function testItCanDelete()
+    {
+        $options = ['video_id' => '1234', 'id' => '1321'];
+        SproutVideo\Subtitle::delete_subtitle($options);
 
-        // // Call the doSomething() method on the $subject object
-        // // which we expect to call the mocked Observer object's
-        // // update() method with the string 'something'.
-        // $subject->list_subtitles(array('video_id' => '1234'));
+        self::$resource->shouldHaveReceived('delete')->once()->with('videos/1234/subtitles/'.$options['id'], $options);  
     }
 }

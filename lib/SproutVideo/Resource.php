@@ -3,44 +3,37 @@ namespace SproutVideo;
 
 class Resource
 {
-    protected static function newClient()
-    {
-        return new CurlClient();
-    }
-
 	protected static function get($path, $options=null)
 	{
-        $test = 'hdfaf resource';
-        var_dump($test);
-		$client = self::newClient();
+		$client = new CurlClient();
 		$response = $client->get($path, $options);
 		return $response;
 	}
 
 	protected static function post($path, $body, $options=null)
 	{
-		$client = self::newClient();
+		$client = new CurlClient();
 		$response = $client->post($path, json_encode($body), $options);
 		return $response;
 	}
 
 	protected static function put($path, $body, $options=null)
 	{
-		$client = self::newClient();
+		$client = new CurlClient();
 		$response = $client->put($path, json_encode($body), $options);
 		return $response;
 	}
 
 	protected static function delete($path, $options=null)
 	{
-		$client = self::newClient();
+		$client = new CurlClient();
 		$response = $client->delete($path, $options);
 		return $response;
 	}
 
 	protected static function upload($path, $file, $body, $options, $method='POST')
 	{
-		$client = self::newClient();
+		$client = new CurlClient();
 		$c_file = new \CurlFile($file, null, $method == 'POST' ? 'source_video' : 'custom_poster_frame');
 
 		$c_file->setPostFilename(basename($file));

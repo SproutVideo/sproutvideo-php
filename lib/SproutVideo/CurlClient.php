@@ -28,7 +28,7 @@ class CurlClient
     curl_setopt($this->ch, CURLOPT_HTTPHEADER, $headers);
   }
 
-  protected function request($method, $uri, $body, $options = null, $upload = false)
+  private function request($method, $uri, $body, $options = null, $upload = false)
   {
     $url = \SproutVideo::$base_url . '/' . $uri;
     if(!is_null($options)) {
@@ -67,8 +67,6 @@ class CurlClient
 
   public function get($uri, $options = null)
   {
-        $test = 'hdfaf client';
-        var_dump($test);
     return $this->request('GET', $uri, null, $options);
   }
 
