@@ -10,7 +10,7 @@ final class SubtitleTest extends MockeryTestCase
         self::$resource = Mockery::spy('alias:SproutVideo\Resource');
     }
 
-    public function testItGetAll()
+    public function testItGetsAll()
     {
         $options = ['video_id' => '1234'];
         SproutVideo\Subtitle::list_subtitles($options);
