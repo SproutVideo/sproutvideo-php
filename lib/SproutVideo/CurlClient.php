@@ -4,7 +4,7 @@ namespace SproutVideo;
 class CurlClient
 {
   protected $ch;
-  protected $headers;
+  public $headers;
 
   public function __construct()
   {
@@ -28,7 +28,7 @@ class CurlClient
     curl_setopt($this->ch, CURLOPT_HTTPHEADER, $headers);
   }
 
-  private function request($method, $uri, $body, $options = null, $upload = false)
+  public function buildRequest($method, $uri, $body, $options, $upload)
   {
     $url = \SproutVideo::$base_url . '/' . $uri;
     if(!is_null($options)) {
@@ -51,6 +51,11 @@ class CurlClient
       $this->addHeader('Content-Type', 'application/json;charset=utf-8');
       $this->addHeader('Content-Length', strlen($body));
     }
+  }
+
+  private function request($method, $uri, $body, $options = null, $upload = false)
+  {
+    $this->buildRequest($method, $uri, $body, $options, $upload);
 
     $result = curl_exec($this->ch);
 
