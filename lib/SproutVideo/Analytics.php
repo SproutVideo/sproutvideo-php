@@ -31,7 +31,7 @@ class Analytics extends Resource
 		return self::build_url_and_get('stats/device_types', $options);
 	}
 
-	public static function engagement($options=null)
+	public static function engagement($options)
 	{
 		return self::build_url_and_get('stats/engagement', $options);
 	}

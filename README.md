@@ -699,11 +699,6 @@ SproutVideo\CallToAction::delete_cta($options);
 * Start a feature/bugfix branch.
 * Commit and push until you are happy with your contribution.
 
-## Setup
-
-* download deps by running `composer install`
-* run the test suite by running `./vendor/bin/phpunit tests`
-
 # Copyright
 
 Copyright (c) 2021 SproutVideo. See LICENSE.txt for further details.
