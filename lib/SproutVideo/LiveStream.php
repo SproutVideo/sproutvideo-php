@@ -26,7 +26,7 @@ class LiveStream extends Resource
 		if ($file == null) {
             return self::put('live_streams/'.$live_stream_id, $body, $options);
 		} else {
-		    return self::upload('live_streams/'.$live_stream_id, $file, $body, null, 'custom_poster_frame');
+		    return self::upload('live_streams/'.$live_stream_id, $file, $body, ['method' => 'PUT'], 'custom_poster_frame');
 		}
 	}
 

@@ -62,7 +62,7 @@ final class VideoTest extends MockeryTestCase
         $file = '/users/dw/beach.jpg';
         SproutVideo\Video::upload_poster_frame('1212', $file);
 
-        self::$resource->shouldHaveReceived('upload')->once()->with('videos/1212', $file, null, null, 'custom_poster_frame');
+        self::$resource->shouldHaveReceived('upload')->once()->with('videos/1212', $file, null, ['method' => 'PUT'], 'custom_poster_frame');
     }
 
     public function testItCanDelete()

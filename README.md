@@ -244,7 +244,7 @@ SproutVideo\LiveStream::create_live_stream(array('name' => 'new live_stream'));
 // with a poster frame
 $file = '/users/dw/beach.jpg';
 $data = [ 'title' => 'beacch vibezz' ];
-sproutvideo\livestream::create_live_stream($data, $file);
+Sproutvideo\LiveStream::create_live_stream($data, $file);
 ?>
 ```
 
@@ -255,7 +255,7 @@ SproutVideo\LiveStream::update_live_stream('abc123', array('name' => 'updated li
 // with a poster frame
 $file = '/users/dw/beach.jpg';
 $data = [ 'title' => 'beacch vibezz' ];
-sproutvideo\livestream::update_live_stream('abc123', $data, $file);
+Sproutvideo\LiveStream::update_live_stream('abc123', $data, $file);
 ?>
 ```
 

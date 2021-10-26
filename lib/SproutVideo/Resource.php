@@ -38,13 +38,18 @@ class Resource
 
 		$c_file->setPostFilename(basename($file));
 
-		if(is_null($body)) {
+		if (is_null($body)) {
 			$body = array();
 		}
 
 		array_push($body, $c_file);
 
-        $method = $field_name == 'source_video' ? 'POST' : 'PUT';
+        $method = null;
+        if (!empty($options) && $options['method']) {
+            $method = $options['method'];
+		    unset($options['method']);
+        }
+        echo json_encode($body);
 
 		$response = $client->upload($path, $body, $options, $method);
 

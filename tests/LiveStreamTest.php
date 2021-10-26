@@ -55,7 +55,7 @@ final class LiveStreamTest extends MockeryTestCase
         $file = '/users/dw/beach.jpg';
         SproutVideo\LiveStream::update_live_stream('1212', $data, $file);
 
-        self::$resource->shouldHaveReceived('upload')->once()->with('live_streams/1212', $file, $data, null, 'custom_poster_frame');
+        self::$resource->shouldHaveReceived('upload')->once()->with('live_streams/1212', $file, $data, ['method' => 'PUT'], 'custom_poster_frame');
     }
 
     public function testItCanDelete()
