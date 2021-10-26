@@ -17,7 +17,7 @@ class Video extends Resource
 		if ($file == null) {
 			return self::post('videos', $body, $options);
 		} else {
-			return self::upload('videos', $file, $body, $options);
+			return self::upload('videos', $file, $body, $options, 'source_video');
 		}
 	}
 
@@ -28,12 +28,12 @@ class Video extends Resource
 
 	public static function replace_video($video_id, $file)
 	{
-		return self::upload('videos/' . $video_id . '/replace', $file, null, null);
+		return self::upload('videos/' . $video_id . '/replace', $file, null, null, 'source_video');
 	}
 
 	public static function upload_poster_frame($video_id, $file)
 	{
-		return self::upload('videos/'.$video_id, $file, null, null, true);
+		return self::upload('videos/'.$video_id, $file, null, null, 'custom_poster_frame');
 	}
 
 	public static function delete_video($video_id, $options=null)

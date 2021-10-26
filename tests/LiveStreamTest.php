@@ -27,7 +27,7 @@ final class LiveStreamTest extends MockeryTestCase
     public function testItCanCreate()
     {
         $data = [ 'title' => 'beacch vibezz' ];
-        SproutVideo\LiveStream::create_live_stream(null, $data);
+        SproutVideo\LiveStream::create_live_stream($data);
 
         self::$resource->shouldHaveReceived('post')->once()->with('live_streams', $data, null);
     }
@@ -36,9 +36,9 @@ final class LiveStreamTest extends MockeryTestCase
     {
         $file = '/users/dw/beach.jpg';
         $data = [ 'title' => 'beacch vibezz' ];
-        SproutVideo\LiveStream::create_live_stream($file, $data);
+        SproutVideo\LiveStream::create_live_stream($data, $file);
 
-        self::$resource->shouldHaveReceived('upload')->once()->with('live_streams', $file, $data, null, true);
+        self::$resource->shouldHaveReceived('upload')->once()->with('live_streams', $file, $data, null, 'custom_poster_frame');
     }
 
     public function testItCanUpdate()
@@ -51,10 +51,11 @@ final class LiveStreamTest extends MockeryTestCase
 
     public function testItCanUploadPosterFrame()
     {
+        $data = [ 'title' => 'vAcAtIoN' ];
         $file = '/users/dw/beach.jpg';
-        SproutVideo\LiveStream::upload_poster_frame('1212', $file);
+        SproutVideo\LiveStream::update_live_stream('1212', $data, $file);
 
-        self::$resource->shouldHaveReceived('upload')->once()->with('live_streams/1212', $file, null, null, true);
+        self::$resource->shouldHaveReceived('upload')->once()->with('live_streams/1212', $file, $data, null, 'custom_poster_frame');
     }
 
     public function testItCanDelete()

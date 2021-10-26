@@ -240,11 +240,11 @@ SproutVideo\LiveStream::get_live_stream('d3f456')
 
 ```php
 <?php
-SproutVideo\LiveStream::create_live_stream(null, array('name' => 'new live_stream'));
+SproutVideo\LiveStream::create_live_stream(array('name' => 'new live_stream'));
 // with a poster frame
-        $file = '/users/dw/beach.jpg';
-        $data = [ 'title' => 'beacch vibezz' ];
-        SproutVideo\LiveStream::create_live_stream($file, $data);
+$file = '/users/dw/beach.jpg';
+$data = [ 'title' => 'beacch vibezz' ];
+sproutvideo\livestream::create_live_stream($data, $file);
 ?>
 ```
 
@@ -252,14 +252,10 @@ SproutVideo\LiveStream::create_live_stream(null, array('name' => 'new live_strea
 ```php
 <?php
 SproutVideo\LiveStream::update_live_stream('abc123', array('name' => 'updated live_stream name'));
-?>
-```
-
-## upload_poster_frame
-```php
-<?php
+// with a poster frame
 $file = '/users/dw/beach.jpg';
-SproutVideo\LiveStream::upload_poster_frame('1212', $file);
+$data = [ 'title' => 'beacch vibezz' ];
+sproutvideo\livestream::update_live_stream('abc123', $data, $file);
 ?>
 ```
 
