@@ -26,10 +26,21 @@ class Analytics extends Resource
 	{
 		return self::build_url_and_get('stats/playback_types', $options, false);
 	}
+
 	public static function device_types($options=null)
 	{
 		return self::build_url_and_get('stats/device_types', $options);
 	}
+
+    public static function popular_videos($options=null)
+    {
+		return self::get("stats/popular_videos", $options);
+    }
+
+    public static function live_stream_overview($options)
+    {
+		return self::build_url_and_get("stats/overview", $options);
+    }
 
 	public static function engagement($options=null)
 	{

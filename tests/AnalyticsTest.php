@@ -73,6 +73,20 @@ final class AnalyticsTest extends MockeryTestCase
         self::$resource->shouldHaveReceived('get')->once()->with('stats/device_types', null);
     }
 
+    public function testItCanGetPopularVideos()
+    {
+        SproutVideo\Analytics::popular_videos();
+
+        self::$resource->shouldHaveReceived('get')->once()->with('stats/popular_videos', null);
+    }
+
+    public function testItCanGetLiveStreamOverview()
+    {
+        SproutVideo\Analytics::live_stream_overview(['live_stream_id' => '123abc']);
+
+        self::$resource->shouldHaveReceived('get')->once()->with('stats/live_streams/123abc/overview', null);
+    }
+
     public function testItCanGetEngagement()
     {
         SproutVideo\Analytics::engagement();

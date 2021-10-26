@@ -610,10 +610,17 @@ SproutVideo\Analytics::device_types(array('video_id' => 'abc123', 'end_date' => 
 ?>
 ```
 
-Lastly, the geo method can take an optional :country to retrieve playback data by city within that country
+The geo method can take an optional :country to retrieve playback data by city within that country
 ```php
 <?php
 SproutVideo\Analytics::geo(array('video_id' => 'abc123', 'country' => 'US'));
+?>
+```
+
+## misc analytics endpoints
+```php
+<?php
+SproutVideo\Analytics::popular_videos();
 ?>
 ```
 
