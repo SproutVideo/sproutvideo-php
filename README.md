@@ -216,7 +216,7 @@ SproutVideo\UploadToken::create_upload_token(array('return_url' => 'https://exam
 ```
 
 # Live Streams
-The following methods are available: `list_live_streams`, `create_live_stream`, `get_live_stream`, `update_live_stream`, `delete_live_stream`, `end_live_stream`.
+The following methods are available: `list_live_streams`, `create_live_stream`, `get_live_stream`, `update_live_stream`, `delete_live_stream`, `end_live_stream` `upload_poster_frame`.
 
 ## list_live_streams
 By default the live_stream listing is paginated with 25 live_streams per page and sorted by created at date in ascending order. You can pass two parameters to control the paging: page and per_page.
@@ -241,6 +241,10 @@ SproutVideo\LiveStream::get_live_stream('d3f456')
 ```php
 <?php
 SproutVideo\LiveStream::create_live_stream(null, array('name' => 'new live_stream'));
+// with a poster frame
+        $file = '/users/dw/beach.jpg';
+        $data = [ 'title' => 'beacch vibezz' ];
+        SproutVideo\LiveStream::create_live_stream($file, $data);
 ?>
 ```
 
@@ -248,6 +252,14 @@ SproutVideo\LiveStream::create_live_stream(null, array('name' => 'new live_strea
 ```php
 <?php
 SproutVideo\LiveStream::update_live_stream('abc123', array('name' => 'updated live_stream name'));
+?>
+```
+
+## upload_poster_frame
+```php
+<?php
+$file = '/users/dw/beach.jpg';
+SproutVideo\LiveStream::upload_poster_frame('1212', $file);
 ?>
 ```
 

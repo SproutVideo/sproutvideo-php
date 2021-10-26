@@ -1,4 +1,4 @@
-<?php 
+<?php
 use \Mockery\Adapter\Phpunit\MockeryTestCase;
 
 final class VideoTest extends MockeryTestCase
@@ -14,14 +14,14 @@ final class VideoTest extends MockeryTestCase
     {
         SproutVideo\Video::list_videos();
 
-        self::$resource->shouldHaveReceived('get')->once()->with('videos', null);  
+        self::$resource->shouldHaveReceived('get')->once()->with('videos', null);
     }
 
     public function testItCanGetDetails()
     {
         SproutVideo\Video::get_video('213asf');
 
-        self::$resource->shouldHaveReceived('get')->once()->with('videos/213asf', null);  
+        self::$resource->shouldHaveReceived('get')->once()->with('videos/213asf', null);
     }
 
     public function testItCanCreate()
@@ -29,7 +29,7 @@ final class VideoTest extends MockeryTestCase
         $data = [ 'title' => 'beacch vibezz' ];
         SproutVideo\Video::create_video(null, $data);
 
-        self::$resource->shouldHaveReceived('post')->once()->with('videos', $data, null);  
+        self::$resource->shouldHaveReceived('post')->once()->with('videos', $data, null);
     }
 
     public function testItCanCreateAndUpload()
@@ -38,7 +38,7 @@ final class VideoTest extends MockeryTestCase
         $data = [ 'title' => 'beacch vibezz' ];
         SproutVideo\Video::create_video($file, $data);
 
-        self::$resource->shouldHaveReceived('upload')->once()->with('videos', $file, $data, null);  
+        self::$resource->shouldHaveReceived('upload')->once()->with('videos', $file, $data, null);
     }
 
     public function testItCanUpdate()
@@ -46,7 +46,7 @@ final class VideoTest extends MockeryTestCase
         $data = [ 'title' => 'vAcAtIoN' ];
         SproutVideo\Video::update_video('1212', $data);
 
-        self::$resource->shouldHaveReceived('put')->once()->with('videos/1212', $data, null);  
+        self::$resource->shouldHaveReceived('put')->once()->with('videos/1212', $data, null);
     }
 
     public function testItCanReplace()
@@ -54,7 +54,7 @@ final class VideoTest extends MockeryTestCase
         $file = '/users/dw/beach.mov';
         SproutVideo\Video::replace_video('1212', $file);
 
-        self::$resource->shouldHaveReceived('upload')->once()->with('videos/1212/replace', $file, null, null);  
+        self::$resource->shouldHaveReceived('upload')->once()->with('videos/1212/replace', $file, null, null);
     }
 
     public function testItCanUploadPosterFrame()
@@ -62,14 +62,14 @@ final class VideoTest extends MockeryTestCase
         $file = '/users/dw/beach.jpg';
         SproutVideo\Video::upload_poster_frame('1212', $file);
 
-        self::$resource->shouldHaveReceived('upload')->once()->with('videos/1212', $file, null, null, 'PUT');  
+        self::$resource->shouldHaveReceived('upload')->once()->with('videos/1212', $file, null, null, 'PUT');
     }
 
     public function testItCanDelete()
     {
         SproutVideo\Video::delete_video('1212');
 
-        self::$resource->shouldHaveReceived('delete')->once()->with('videos/1212', null);  
+        self::$resource->shouldHaveReceived('delete')->once()->with('videos/1212', null);
     }
 
     public function testItCanSignAnEmbedCode()

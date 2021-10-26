@@ -31,10 +31,10 @@ class Resource
 		return $response;
 	}
 
-	protected static function upload($path, $file, $body, $options, $method='POST')
+	protected static function upload($path, $file, $body, $options, $poster_frame=false)
 	{
 		$client = new CurlClient();
-		$c_file = new \CurlFile($file, null, $method == 'POST' ? 'source_video' : 'custom_poster_frame');
+		$c_file = new \CurlFile($file, null, $poster_frame == true ? 'custom_poster_frame' : 'source_video');
 
 		$c_file->setPostFilename(basename($file));
 
