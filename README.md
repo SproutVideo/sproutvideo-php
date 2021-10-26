@@ -215,6 +215,60 @@ SproutVideo\UploadToken::create_upload_token(array('return_url' => 'https://exam
 ?>
 ```
 
+# Live Streams
+The following methods are available: `list_live_streams`, `create_live_stream`, `get_live_stream`, `update_live_stream`, `delete_live_stream`, `end_live_stream`.
+
+## list_live_streams
+By default the live_stream listing is paginated with 25 live_streams per page and sorted by created at date in ascending order. You can pass two parameters to control the paging: page and per_page.
+
+```php
+<?php
+SproutVideo\LiveStream::list_live_streams();
+SproutVideo\LiveStream::list_live_streams('per_page' => 10);
+SproutVideo\LiveStream::list_live_streams('per_page' => 10, 'page' => 2);
+?>
+```
+
+## get_live_stream
+```php
+<?php
+SproutVideo\LiveStream::get_live_stream('d3f456')
+?>
+```
+
+## create_live_stream
+
+```php
+<?php
+SproutVideo\LiveStream::create_live_stream(null, array('name' => 'new live_stream'));
+?>
+```
+
+## update_live_stream
+```php
+<?php
+SproutVideo\LiveStream::update_live_stream('abc123', array('name' => 'updated live_stream name'));
+?>
+```
+
+## delete_live_stream
+Pass in the id of the live_stream you wish to delete.
+
+```php
+<?php
+SproutVideo\LiveStream::delete_live_stream('abc123');
+?>
+```
+
+## end_live_stream
+Pass in the id of the live_stream you wish to end.
+
+```php
+<?php
+SproutVideo\LiveStream::end_live_stream('abc123');
+?>
+```
+
 # Tags
 The following methods are available: `list_tags`, `create_tag`, `get_tag`, `update_tag`, `delete_tag`.
 
@@ -226,6 +280,13 @@ By default the tag listing is paginated with 25 tags per page and sorted by crea
 SproutVideo\Tag::list_tags();
 SproutVideo\Tag::list_tags('per_page' => 10);
 SproutVideo\Tag::list_tags('per_page' => 10, 'page' => 2);
+?>
+```
+
+## get_tag
+```php
+<?php
+SproutVideo\Tag::get_tag('d3f456')
 ?>
 ```
 
@@ -530,6 +591,15 @@ SproutVideo\Analytics::geo(array('video_id' => 'abc123'));
 SproutVideo\Analytics::video_types(array('video_id' => 'abc123'));
 SproutVideo\Analytics::playback_types(array('video_id' => 'abc123'));
 SproutVideo\Analytics::device_types(array('video_id' => 'abc123'));
+?>
+```
+The following methods can also take an options array containing a :live for retrieving overall data for a specific video:
+```php
+<?php
+SproutVideo\Analytics::play_counts(array('live_stream_id' => 'abc123'));
+SproutVideo\Analytics::domains(array('live_stream_id' => 'abc123'));
+SproutVideo\Analytics::geo(array('live_stream_id' => 'abc123'));
+SproutVideo\Analytics::device_types(array('live_stream_id' => 'abc123'));
 ?>
 ```
 Each method can also take an optional :start_date and :end_date to specify a date range for the returned data:
