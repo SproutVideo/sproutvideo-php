@@ -45,6 +45,24 @@ class Analytics extends Resource
 		}
 	}
 
+	public static function live_streams_engagement($options=null)
+	{
+        if (!empty($options) && $options['live_stream_id']) {
+		    return self::build_url_and_get('stats/engagement', $options);
+        } else {
+            return self::get("stats/live_streams/engagement", $options);
+        }
+	}
+
+	public static function live_streams_engagement_sessions($options=null)
+	{
+        if (!empty($options) && $options['live_stream_id']) {
+		    return self::build_url_and_get('stats/engagement/sessions', $options);
+        } else {
+            return self::get("stats/live_streams/engagement/sessions", $options);
+        }
+	}
+
 
 	private static function build_url_and_get($base, &$options, $can_be_live_stream=true) {
 		if (!empty($options) && array_key_exists('video_id', $options)) {
@@ -63,8 +81,3 @@ class Analytics extends Resource
 	}
 }
 ?>
-
-<!-- require_once './lib/SproutVideo/Autoloader.php';
-sproutVideo_Autoloader::register();
-SproutVideo::$api_key = 'e82a10bc3d77caea6c49ff7f635f28be';
-SproutVideo::$base_url = "https://api.sproutvideo-staging.com/v1" -->

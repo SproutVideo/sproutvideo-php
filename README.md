@@ -625,10 +625,24 @@ SproutVideo\Analytics::engagement();
 ?>
 ```
 
+And for livestreams:
+```php
+<?php
+SproutVideo\Analytics::live_streams_engagement();
+?>
+```
+
 You can grab engagement for a specific video like so:
 ```php
 <?php
 SproutVideo\Analytics::engagement(array('video_id' => 'abc123'));
+?>
+```
+
+And for a livestream:
+```php
+<?php
+SproutVideo\Analytics::live_streams_engagement(array('live_stream_id' => 'abc123'));
 ?>
 ```
 
@@ -645,6 +659,15 @@ You can also grab engagement sessions for a video for a specific email address l
 ```php
 <?php
 SproutVideo\Analytics::engagement_sessions('abc123', array('vemail' => 'test@example.com'));
+?>
+```
+
+You can also grab engagement sessions for a live stream:
+```php
+<?php
+SproutVideo\Analytics::live_streams_engagement_sessions();
+// and for a specific live stream
+SproutVideo\Analytics::live_streams_engagement_sessions(array('live_stream_id' => 'abc123'));
 ?>
 ```
 
