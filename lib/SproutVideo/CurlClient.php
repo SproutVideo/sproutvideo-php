@@ -46,11 +46,8 @@ class CurlClient
       }
       curl_setopt($this->ch, CURLOPT_POSTFIELDS, $body);
     }
-    echo "hellooooo";
-    echo $method;
-    echo $upload;
+
     if ($upload == false && ($method == 'POST' || $method == 'PUT')) {
-      echo 'hiiiiii';
       $this->addHeader('Content-Type', 'application/json;charset=utf-8');
       $this->addHeader('Content-Length', strlen($body));
     }

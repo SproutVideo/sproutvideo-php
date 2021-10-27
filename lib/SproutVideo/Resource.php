@@ -42,14 +42,13 @@ class Resource
 			$body = array();
 		}
 
-		array_push($body, $c_file);
+		$body[$field_name] = $c_file;
 
         $method = null;
         if (!empty($options) && $options['method']) {
             $method = $options['method'];
 		    unset($options['method']);
         }
-        echo json_encode($body);
 
 		$response = $client->upload($path, $body, $options, $method);
 
