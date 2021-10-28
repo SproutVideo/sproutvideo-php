@@ -31,18 +31,24 @@ class Resource
 		return $response;
 	}
 
-	protected static function upload($path, $file, $body, $options, $method='POST')
+	protected static function upload($path, $file, $body, $options, $field_name)
 	{
 		$client = new CurlClient();
-		$c_file = new \CurlFile($file, null, $method == 'POST' ? 'source_video' : 'custom_poster_frame');
+		$c_file = new \CurlFile($file, null, $field_name);
 
 		$c_file->setPostFilename(basename($file));
 
-		if(is_null($body)) {
+		if (is_null($body)) {
 			$body = array();
 		}
 
-		array_push($body, $c_file);
+		$body[$field_name] = $c_file;
+
+        $method = null;
+        if (!empty($options) && $options['method']) {
+            $method = $options['method'];
+		    unset($options['method']);
+        }
 
 		$response = $client->upload($path, $body, $options, $method);
 
