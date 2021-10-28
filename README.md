@@ -46,7 +46,7 @@ By default the videos listing is paginated with 25 videos per page and sorted by
 SproutVideo\Video::list_videos();
 SproutVideo\Video::list_videos(array('per_page' => 10));
 SproutVideo\Video::list_videos(array('per_page' => 10, 'page' => 2));
-SproutVideo\Video::list_videos(array('tag_id' => 'abc')));
+SproutVideo\Video::list_videos(array('tag_id' => 'abc'));
 ?>
 ```
 
@@ -215,6 +215,68 @@ SproutVideo\UploadToken::create_upload_token(array('return_url' => 'https://exam
 ?>
 ```
 
+# Live Streams
+The following methods are available: `list_live_streams`, `create_live_stream`, `get_live_stream`, `update_live_stream`, `delete_live_stream`, `end_live_stream` `upload_poster_frame`.
+
+## list_live_streams
+By default the live_stream listing is paginated with 25 live_streams per page and sorted by created at date in ascending order. You can pass two parameters to control the paging: page and per_page.
+
+```php
+<?php
+SproutVideo\LiveStream::list_live_streams();
+SproutVideo\LiveStream::list_live_streams('per_page' => 10);
+SproutVideo\LiveStream::list_live_streams('per_page' => 10, 'page' => 2);
+?>
+```
+
+## get_live_stream
+```php
+<?php
+SproutVideo\LiveStream::get_live_stream('d3f456')
+?>
+```
+
+## create_live_stream
+
+```php
+<?php
+SproutVideo\LiveStream::create_live_stream(array('name' => 'new live_stream'));
+// with a poster frame
+$file = '/users/dw/beach.jpg';
+$data = [ 'title' => 'beacch vibezz' ];
+Sproutvideo\LiveStream::create_live_stream($data, $file);
+?>
+```
+
+## update_live_stream
+```php
+<?php
+SproutVideo\LiveStream::update_live_stream('abc123', array('name' => 'updated live_stream name'));
+// with a poster frame
+$file = '/users/dw/beach.jpg';
+$data = [ 'title' => 'beacch vibezz' ];
+Sproutvideo\LiveStream::update_live_stream('abc123', $data, $file);
+?>
+```
+
+## delete_live_stream
+Pass in the id of the live_stream you wish to delete.
+
+```php
+<?php
+SproutVideo\LiveStream::delete_live_stream('abc123');
+?>
+```
+
+## end_live_stream
+Pass in the id of the live_stream you wish to end.
+
+```php
+<?php
+SproutVideo\LiveStream::end_live_stream('abc123');
+?>
+```
+
 # Tags
 The following methods are available: `list_tags`, `create_tag`, `get_tag`, `update_tag`, `delete_tag`.
 
@@ -226,6 +288,13 @@ By default the tag listing is paginated with 25 tags per page and sorted by crea
 SproutVideo\Tag::list_tags();
 SproutVideo\Tag::list_tags('per_page' => 10);
 SproutVideo\Tag::list_tags('per_page' => 10, 'page' => 2);
+?>
+```
+
+## get_tag
+```php
+<?php
+SproutVideo\Tag::get_tag('d3f456')
 ?>
 ```
 
@@ -532,6 +601,15 @@ SproutVideo\Analytics::playback_types(array('video_id' => 'abc123'));
 SproutVideo\Analytics::device_types(array('video_id' => 'abc123'));
 ?>
 ```
+The following methods can also take an options array containing a :live for retrieving overall data for a specific video:
+```php
+<?php
+SproutVideo\Analytics::play_counts(array('live_stream_id' => 'abc123'));
+SproutVideo\Analytics::domains(array('live_stream_id' => 'abc123'));
+SproutVideo\Analytics::geo(array('live_stream_id' => 'abc123'));
+SproutVideo\Analytics::device_types(array('live_stream_id' => 'abc123'));
+?>
+```
 Each method can also take an optional :start_date and :end_date to specify a date range for the returned data:
 ```php
 <?php
@@ -540,10 +618,17 @@ SproutVideo\Analytics::device_types(array('video_id' => 'abc123', 'end_date' => 
 ?>
 ```
 
-Lastly, the geo method can take an optional :country to retrieve playback data by city within that country
+The geo method can take an optional :country to retrieve playback data by city within that country
 ```php
 <?php
 SproutVideo\Analytics::geo(array('video_id' => 'abc123', 'country' => 'US'));
+?>
+```
+
+## misc analytics endpoints
+```php
+<?php
+SproutVideo\Analytics::popular_videos();
 ?>
 ```
 
@@ -555,10 +640,24 @@ SproutVideo\Analytics::engagement();
 ?>
 ```
 
+And for livestreams:
+```php
+<?php
+SproutVideo\Analytics::live_streams_engagement();
+?>
+```
+
 You can grab engagement for a specific video like so:
 ```php
 <?php
 SproutVideo\Analytics::engagement(array('video_id' => 'abc123'));
+?>
+```
+
+And for a livestream:
+```php
+<?php
+SproutVideo\Analytics::live_streams_engagement(array('live_stream_id' => 'abc123'));
 ?>
 ```
 
@@ -575,6 +674,15 @@ You can also grab engagement sessions for a video for a specific email address l
 ```php
 <?php
 SproutVideo\Analytics::engagement_sessions('abc123', array('vemail' => 'test@example.com'));
+?>
+```
+
+You can also grab engagement sessions for a live stream:
+```php
+<?php
+SproutVideo\Analytics::live_streams_engagement_sessions();
+// and for a specific live stream
+SproutVideo\Analytics::live_streams_engagement_sessions(array('live_stream_id' => 'abc123'));
 ?>
 ```
 
@@ -596,6 +704,101 @@ SproutVideo\Account::get_account();
 SproutVideo\Account::update_account(array('download_hd' => true));
 ?>
 ```
+
+# Subtitles
+The following methods are available: `list_subtitles`, `create_subtitle`, `get_subtitle`, `update_subtitle`, `delete_subtitle`.
+
+## list_subtitles
+By default, the subtitle listing is paginated with 25 subtitles per page and sorted by created at date in ascending order. You can pass two parameters to control the paging: page and per_page. You must pass a video_id in the options array.
+
+```php
+<?php
+SproutVideo\Subtitle::list_subtitles(array('video_id' => 'abd124'));
+SproutVideo\Subtitle::list_subtitles(array('video_id' => 'abd124', 'per_page' => 10));
+SproutVideo\Subtitle::list_subtitles(array('video_id' => 'abd124', 'per_page' => 10, 'page' => 2));
+?>
+```
+
+## create_subtitle
+To create a subtitle, you must pass the following `data`: language and content. You must also pass the `video_id` option for the video you want to add the subtitle to.
+
+```php
+<?php
+$data = array('language' => 'en', 'content' => 'WEBVTT FILE...');
+$options = array('movie_id' => 'abc123');
+
+SproutVideo\Subtitle::create_subtitle($data, $options);
+?>
+```
+
+## update_subtitle
+
+```php
+<?php
+$data = array('language' => 'fr');
+$options = array('movie_id' => 'abc123', 'id' => 'cde345');
+
+SproutVideo\Subtitle::update_subtitle($data, $options);
+?>
+```
+
+## delete_subtitle
+Pass in the id of the subtitle you wish to delete and it's associated video_id.
+
+```php
+<?php
+$options = array('movie_id' => 'abc123', 'id' => 'cde345');
+SproutVideo\Subtitle::delete_subtitle($options);
+?>
+```
+
+# Calls to Action
+The following methods are available: `list_ctas`, `create_cta`, `get_cta`, `update_cta`, `delete_cta`.
+
+## list_ctas
+By default, the cta listing is paginated with 25 ctas per page and sorted by created at date in ascending order. You can pass two parameters to control the paging: page and per_page. You must pass a video_id in the options array.
+
+```php
+<?php
+SproutVideo\CallToAction::list_ctas(array('video_id' => 'abd124'));
+SproutVideo\CallToAction::list_ctas(array('video_id' => 'abd124', 'per_page' => 10));
+SproutVideo\CallToAction::list_ctas(array('video_id' => 'abd124', 'per_page' => 10, 'page' => 2));
+?>
+```
+
+## create_cta
+To create a cta, you must pass the following `data`: text, url, start_time, and end_time. You must also pass the `video_id` option for the video you want to add the cta to.
+
+```php
+<?php
+$data = array('text' => 'get it done', 'url' => 'https://sproutvideo.com', 'start_time' => 1, 'end_time' => 2);
+$options = array('movie_id' => 'abc123');
+
+SproutVideo\CallToAction::create_cta($data, $options);
+?>
+```
+
+## update_cta
+
+```php
+<?php
+$data = array('text' => 'do something else');
+$options = array('movie_id' => 'abc123', 'id' => 'cde345');
+
+SproutVideo\CallToAction::update_cta($data, $options);
+?>
+```
+
+## delete_cta
+Pass in the id of the cta you wish to delete and it's associated video_id.
+
+```php
+<?php
+$options = array('movie_id' => 'abc123', 'id' => 'cde345');
+SproutVideo\CallToAction::delete_cta($options);
+?>
+```
+
 # Contributing to sproutvideo-php
 
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet.
@@ -604,6 +807,11 @@ SproutVideo\Account::update_account(array('download_hd' => true));
 * Start a feature/bugfix branch.
 * Commit and push until you are happy with your contribution.
 
+## Setup
+
+* download deps by running `composer install`
+* run the test suite by running `./vendor/bin/phpunit tests`
+
 # Copyright
 
-Copyright (c) 2020 SproutVideo. See LICENSE.txt for further details.
+Copyright (c) 2021 SproutVideo. See LICENSE.txt for further details.
