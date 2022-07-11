@@ -583,6 +583,7 @@ Each method can be called on it's own for overall account data for all time like
 ```php
 <?php
 SproutVideo\Analytics::play_counts();
+SproutVideo\Analytics::download_counts();
 SproutVideo\Analytics::domains();
 SproutVideo\Analytics::geo();
 SproutVideo\Analytics::video_types();
@@ -594,6 +595,7 @@ Each method can also take an options array containing a :video_id for retrieving
 ```php
 <?php
 SproutVideo\Analytics::play_counts(array('video_id' => 'abc123'));
+SproutVideo\Analytics::download_counts(array('video_id' => 'abc123'));
 SproutVideo\Analytics::domains(array('video_id' => 'abc123'));
 SproutVideo\Analytics::geo(array('video_id' => 'abc123'));
 SproutVideo\Analytics::video_types(array('video_id' => 'abc123'));
@@ -629,6 +631,7 @@ SproutVideo\Analytics::geo(array('video_id' => 'abc123', 'country' => 'US'));
 ```php
 <?php
 SproutVideo\Analytics::popular_videos();
+SproutVideo\Analytics::popular_downloads();
 ?>
 ```
 

@@ -17,6 +17,13 @@ final class AnalyticsTest extends MockeryTestCase
         self::$resource->shouldHaveReceived('get')->once()->with('stats/counts', null);
     }
 
+     public function testItCanGetDownloadCounts()
+    {
+        SproutVideo\Analytics::download_counts();
+
+        self::$resource->shouldHaveReceived('get')->once()->with('stats/downloads', null);
+    }
+
     public function testItCanGetPlayCountsForSingleVideo()
     {
         SproutVideo\Analytics::play_counts(['video_id' => '123abc']);
@@ -78,6 +85,13 @@ final class AnalyticsTest extends MockeryTestCase
         SproutVideo\Analytics::popular_videos();
 
         self::$resource->shouldHaveReceived('get')->once()->with('stats/popular_videos', null);
+    }
+
+    public function testItCanGetPopularDownloads()
+    {
+        SproutVideo\Analytics::popular_downloads();
+
+        self::$resource->shouldHaveReceived('get')->once()->with('stats/popular_downloads', null);
     }
 
     public function testItCanGetLiveStreamOverview()

@@ -7,6 +7,10 @@ class Analytics extends Resource
 		return self::build_url_and_get('stats/counts',  $options);
 	}
 
+	public static function download_counts($options=null)
+	{
+		return self::build_url_and_get('stats/downloads',  $options);
+	}
 	public static function domains($options=null)
 	{
 		return self::build_url_and_get('stats/domains', $options);
@@ -32,15 +36,20 @@ class Analytics extends Resource
 		return self::build_url_and_get('stats/device_types', $options);
 	}
 
-    public static function popular_videos($options=null)
-    {
+	public static function popular_videos($options=null)
+	{
 		return self::get("stats/popular_videos", $options);
-    }
+	}
 
-    public static function live_stream_overview($options)
-    {
+	public static function popular_downloads($options=null)
+	{
+		return self::get("stats/popular_downloads", $options);
+	}
+
+  public static function live_stream_overview($options)
+	{
 		return self::build_url_and_get("stats/overview", $options);
-    }
+	}
 
 	public static function engagement($options=null)
 	{
