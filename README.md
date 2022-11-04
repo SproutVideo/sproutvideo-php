@@ -341,10 +341,10 @@ Creating a folder without a `parent_id` will place that folder in the root folde
 ```php
 <?php
  // folder is created in the root folder.
-SproutVideo\Folder.create_folder(array('name' => 'New Folder'));
+SproutVideo\Folder::create_folder(array('name' => 'New Folder'));
 
 // folder is created as a child of the folder specified by the id 'def456'
-SproutVideo\Folder.create_folder(array(
+SproutVideo\Folder::create_folder(array(
   'name' => 'New Folder',
   'parent_id' => 'def456'
 ));
@@ -354,14 +354,14 @@ SproutVideo\Folder.create_folder(array(
 ## get_folder
 ```php
 <?php
-SproutVideo\Folder.get_folder('d3f456')
+SproutVideo\Folder::get_folder('d3f456')
 ?>
 ```
 
 ## update_folder
 ```php
 <?php
-SproutVideo\Folder.update_folder('def456', array('name' => 'Renamed Folder'))
+SproutVideo\Folder::update_folder('def456', array('name' => 'Renamed Folder'))
 ?>
 ```
 
@@ -371,10 +371,10 @@ By default, when deleting a folder, all of the contents of that folder (videos a
 ```php
 <?php
 // delete the folder and move it's contents to the root folder
-SproutVideo\Folder.delete_folder('def456');
+SproutVideo\Folder::delete_folder('def456');
 
 // delete the folder and everything in it.
-SproutVideo\Folder.delete_folder('def456', array('delete_all' => true));
+SproutVideo\Folder::delete_folder('def456', array('delete_all' => true));
 ?>
 ```
 # Playlists
