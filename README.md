@@ -553,7 +553,7 @@ You can change the optional parameters for an access grant.
 
 ```php
 <?php
-SproutVideo\AccessGrant.update_access_grant('abc123', array(
+SproutVideo\AccessGrant::update_access_grant('abc123', array(
   'allowed_plays' => 20,
   'access_ends_at' => '2015-04-15T00:00:00+00:00'));
 ?>
