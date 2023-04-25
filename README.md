@@ -374,7 +374,7 @@ By default, when deleting a folder, all of the contents of that folder (videos a
 SproutVideo\Folder::delete_folder('def456');
 
 // delete the folder and everything in it.
-SproutVideo\Folder::delete_folder('def456', array('delete_all' => true));
+SproutVideo\Folder::delete_folder('def456', array('delete_all' => 'true'));
 ?>
 ```
 # Playlists
