@@ -34,7 +34,10 @@ class Resource
 	protected static function upload($path, $file, $body, $options, $field_name)
 	{
 		$client = new CurlClient();
-		$c_file = new \CurlFile($file, null, $field_name);
+
+		$finfo = finfo_open(FILEINFO_MIME_TYPE);
+		$mime_type = finfo_file($finfo, $file);
+		$c_file = new \CurlFile($file, $mime_type, $field_name);
 
 		$c_file->setPostFilename(basename($file));
 
