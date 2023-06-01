@@ -32,7 +32,7 @@ class CallToAction extends Resource
         if (!array_key_exists('video_id', $options)) {
             throw new \Exception('video_id must be set');
         }
-        return "videos/${options["video_id"]}/calls_to_action";
+        return "videos/{$options["video_id"]}/calls_to_action";
     }
 }
 ?>
