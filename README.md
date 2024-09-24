@@ -587,7 +587,6 @@ SproutVideo\Analytics::download_counts();
 SproutVideo\Analytics::domains();
 SproutVideo\Analytics::geo();
 SproutVideo\Analytics::video_types();
-SproutVideo\Analytics::playback_types();
 SproutVideo\Analytics::device_types();
 ?>
 ```
@@ -599,7 +598,6 @@ SproutVideo\Analytics::download_counts(array('video_id' => 'abc123'));
 SproutVideo\Analytics::domains(array('video_id' => 'abc123'));
 SproutVideo\Analytics::geo(array('video_id' => 'abc123'));
 SproutVideo\Analytics::video_types(array('video_id' => 'abc123'));
-SproutVideo\Analytics::playback_types(array('video_id' => 'abc123'));
 SproutVideo\Analytics::device_types(array('video_id' => 'abc123'));
 ?>
 ```
