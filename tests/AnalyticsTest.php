@@ -66,13 +66,6 @@ final class AnalyticsTest extends MockeryTestCase
         self::$resource->shouldHaveReceived('get')->once()->with('stats/video_types', null);
     }
 
-    public function testItCanGetPlaybackTypes()
-    {
-        SproutVideo\Analytics::playback_types();
-
-        self::$resource->shouldHaveReceived('get')->once()->with('stats/playback_types', null);
-    }
-
     public function testItCanGetDeviceTypes()
     {
         SproutVideo\Analytics::device_types();

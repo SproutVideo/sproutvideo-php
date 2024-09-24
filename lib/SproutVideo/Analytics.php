@@ -26,11 +26,6 @@ class Analytics extends Resource
 		return self::build_url_and_get('stats/video_types', $options, false);
 	}
 
-	public static function playback_types($options=null)
-	{
-		return self::build_url_and_get('stats/playback_types', $options, false);
-	}
-
 	public static function device_types($options=null)
 	{
 		return self::build_url_and_get('stats/device_types', $options);
