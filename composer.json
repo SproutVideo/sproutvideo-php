@@ -18,7 +18,7 @@
         "files" : ["lib/SproutVideo/SproutVideo.php"]
     },
     "require-dev": {
-        "phpunit/phpunit": "^9",
-        "mockery/mockery": "dev-master"
+        "phpunit/phpunit": "^9.6",
+        "mockery/mockery": "^1.6"
     }
 }
